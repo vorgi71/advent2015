@@ -9,20 +9,20 @@ class Day9 {
       |London to Belfast = 518
       |Dublin to Belfast = 141""".trimMargin().lines()
 
-    var cities=parseFlights(input1)
+    val cities=parseFlights(input1)
 
     println("cities = ${cities.values}")
 
-    var routes = findAllRoutes(cities.values.toList())
+    val routes = findAllRoutes(cities.values.toList())
 
     println("routes = ${routes.minBy { data ->
       data.first
     }.first}")
 
     val input2 = Utils.readInput("day9")
-    var cities2 = parseFlights(input2)
+    val cities2 = parseFlights(input2)
 
-    var routes2 = findAllRoutes(cities2.values.toList())
+    val routes2 = findAllRoutes(cities2.values.toList())
 
     println("routes2 = ${routes2.minBy { data ->
       data.first
@@ -49,7 +49,7 @@ class Day9 {
     return cities
   }
 
-  class City(val name:String) {
+  class City(private val name:String) {
     var connections:MutableList<Connection> = mutableListOf()
 
     override fun toString(): String {
@@ -63,7 +63,7 @@ class Day9 {
 
   data class Connection(val target:City, var distance:Int)
 
-  fun findAllRoutes(cities: List<City>): List<Pair<Int,List<City>>> {
+  private fun findAllRoutes(cities: List<City>): List<Pair<Int,List<City>>> {
     val allRoutes = mutableListOf<Pair<Int,List<City>>>()
     val visited = mutableSetOf<City>()
 
